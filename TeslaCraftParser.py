@@ -6,14 +6,16 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import undetected_chromedriver as uc
 
+USER_DATA_DIR = r"C:\Users\Misha20062006\AppData\Local\Google\Chrome\SeleniumProfile"
+
+first_id = 1
 MAX_ID = 132792
 
 
 def start_browser():
     options = uc.ChromeOptions()
 
-    user_data_dir = r"C:\Users\Misha20062006\AppData\Local\Google\Chrome\SeleniumProfile"
-    options.add_argument(f"--user-data-dir={user_data_dir}")
+    options.add_argument(f"--user-data-dir={USER_DATA_DIR}")
 
     options.add_argument(f'--disable-gpu')  # Отключает использование GPU (иногда ускоряет headless)
     options.add_argument(f'--window-size=1920,1080')  # Фиксированный размер окна, важно для корректного рендеринга
@@ -62,7 +64,7 @@ def restart_browser(browser_restart):
         time.sleep(10)
     return browser_restart
 
-first_id = 1
+
 if os.path.exists('first_id.txt'):
     with open('first_id.txt', 'r', encoding='utf-8') as file:
         first_id = file.read()
