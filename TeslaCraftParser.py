@@ -1,9 +1,10 @@
+import os
+import time
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import undetected_chromedriver as uc
-import time
 from selenium.webdriver.chrome.options import Options
-import os
+import undetected_chromedriver as uc
 
 MAX_ID = 132792
 
@@ -99,6 +100,7 @@ for i in range(int(first_id), MAX_ID + 1):
         if ratings >= 100:
             with open('users.txt', 'a', encoding='utf-8') as file:
                 file.write(f'{name} {ratings}\n')
+            print('Игрок и значение рейтингов записаны в файл users.txt')
 
         print("--- %s seconds ---" % (time.time() - start_time))
     except Exception as e:
@@ -117,10 +119,11 @@ with open('users_sort.txt', 'w', encoding='utf-8'):
     pass
 
 ratings_dict = {k: v for k, v in sorted(ratings_dict.items(), key=lambda item: item[1], reverse=True)}
-print(ratings_dict)
+
 number = 0
 for i in ratings_dict.items():
     number += 1
     print(f'{number}. {i[0]}: {i[1]}')
     with open('users_sort.txt', 'a', encoding='utf-8') as file:
         file.write(f'{number}. {i[0]}: {i[1]}\n')
+print('Топ по рейтингам (отсортированные данные) записан в файл users_sort.txt')

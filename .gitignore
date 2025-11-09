@@ -1,4 +1,6 @@
 *.env
 *.venv
 *.idea/
-*.txt
+users.txt
+users_sort.txt
+first_id.txt
