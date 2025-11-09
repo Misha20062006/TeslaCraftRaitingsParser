@@ -51,18 +51,13 @@ def start_browser():
 
 
 def restart_browser(browser_restart):
-    try:
+        time.sleep(5)
         browser_restart.quit()
-        time.sleep(2)
+        time.sleep(5)
         browser_restart = start_browser()
         browser_restart.get(f'https://teslacraft.org/members/name.{1}/card')
         time.sleep(10)
-    except Exception as ex:
-        print('Ошибка при открытии браузера:', ex)
-        browser_restart = start_browser()
-        browser_restart.get(f'https://teslacraft.org/members/name.{1}/card')
-        time.sleep(10)
-    return browser_restart
+        return browser_restart
 
 
 if os.path.exists('first_id.txt'):
