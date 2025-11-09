@@ -1,15 +1,21 @@
 import os
 import time
+import configparser
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import undetected_chromedriver as uc
 
-USER_DATA_DIR = r"C:\Users\Misha20062006\AppData\Local\Google\Chrome\SeleniumProfile"
+config = configparser.ConfigParser()
+config.read('config.ini', encoding='utf-8')
+USER_DATA_DIR = config['DEFAULT']['UserDataDir']
+if '\\' not in USER_DATA_DIR:
+    raise 'Не указан путь к папке хрома в файле config.ini'
 
+MAX_ID = int(config['DEFAULT']['MaxID'])
 first_id = 1
-MAX_ID = 132792
+
 
 
 def start_browser():
